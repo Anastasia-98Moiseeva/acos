@@ -1,3 +1,4 @@
+#include <stdio.h>
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <unistd.h>
@@ -7,6 +8,7 @@
 #include <error.h>
 #include <errno.h>
 #include <libgen.h>
+#include <ctype.h>
 
 
 // Функция подсчёт всех значений.
@@ -26,7 +28,7 @@ int countAll(int inputFd, int* countWords, int* countLines, int* countSymbols)
 
         for (int i = 0; i < countBytesRead; ++i)
         {
-            if (buffer[i] == ' ' || buffer[i] == '\t' || buffer[i] == '\r' || buffer[i] == '\n')
+            if (isspace(buffer[i]))
             {
                 if (!isLastSpace)
                 {
